@@ -1,0 +1,14 @@
+artifact_uri: file:///Users/nabarundutta/Downloads/HotelReservation/mlruns/0/1ab4c9b674e04b3d8d6888e27970a74b/artifacts
+end_time: 1754296089790
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 1ab4c9b674e04b3d8d6888e27970a74b
+run_name: selective-ram-626
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1754296078617
+status: 3
+tags: []
+user_id: nabarundutta

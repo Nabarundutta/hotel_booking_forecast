@@ -1,0 +1,22 @@
+artifact_path: file:///Users/nabarundutta/Downloads/HotelReservation/mlruns/0/models/m-ab0bdb07e5bd4a5ba8723fce78cb77e5/artifacts
+flavors:
+  python_function:
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.sklearn
+    model_path: model.pkl
+    predict_fn: predict
+    python_version: 3.12.7
+  sklearn:
+    code: null
+    pickled_model: model.pkl
+    serialization_format: cloudpickle
+    sklearn_version: 1.6.1
+mlflow_version: 3.1.4
+model_id: m-ab0bdb07e5bd4a5ba8723fce78cb77e5
+model_size_bytes: 3159893
+model_uuid: m-ab0bdb07e5bd4a5ba8723fce78cb77e5
+prompts: null
+run_id: 10b39b805614403182ce55b726eee061
+utc_time_created: '2025-08-04 08:14:27.123930'

@@ -1,0 +1,14 @@
+artifact_uri: file:///Users/nabarundutta/Downloads/HotelReservation/mlruns/0/37e2908864db42dba1f677e264218d06/artifacts
+end_time: 1754295457827
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 37e2908864db42dba1f677e264218d06
+run_name: bright-sheep-739
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1754295448112
+status: 3
+tags: []
+user_id: nabarundutta
