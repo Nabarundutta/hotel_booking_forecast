@@ -5,6 +5,9 @@ pipeline{
         VENV_DIR = 'venv'
         GCP_PROJECT = 'decisive-circle-462313-s7'
         GCLOUD_PATH = "/var/jenkins_home/google-cloud-sdk/bin"
+        IMAGE_NAME = "ml-project"
+        IMAGE_TAG = "latest"
+        GCR_IMAGE = "gcr.io/${GCP_PROJECT}/${IMAGE_NAME}:${IMAGE_TAG}"
     }
 
     stages{
@@ -32,27 +35,33 @@ pipeline{
         }
 
 
-        stage("Building and pushing docker image to gcr"){
-            steps{
-                withCredentials([file(credentialsId: 'gcp-key' , variable : 'GOOGLE_APPLICATION_CREDENTIALS')]){
-                    script{
-                        echo 'Building and Pushing Docker Image to GCR.............'
+        stage('Build & Push Docker Image to GCR') {
+            steps {
+                withCredentials([file(credentialsId: 'gcp-key', variable: 'GOOGLE_APPLICATION_CREDENTIALS')]) {
+                    script {
+                        echo 'Building and pushing Docker image to GCR.............'
                         sh '''
                         export PATH=$PATH:${GCLOUD_PATH}
 
-
                         gcloud auth activate-service-account --key-file=${GOOGLE_APPLICATION_CREDENTIALS}
-
                         gcloud config set project ${GCP_PROJECT}
-
                         gcloud auth configure-docker --quiet
 
-                        docker build -t gcr.io/${GCP_PROJECT}/ml-project:latest .
-
-                        docker push gcr.io/${GCP_PROJECT}/ml-project:latest 
-
+                        docker build -t ${GCR_IMAGE} .
+                        docker push ${GCR_IMAGE}
                         '''
                     }
+                }
+            }
+        }
+
+        stage('Run Training Pipeline Inside Container') {
+            steps {
+                script {
+                    echo 'Running training pipeline inside container.............'
+                    sh """
+                    docker run --rm ${GCR_IMAGE} python pipeline/training_pipeline.py
+                    """
                 }
             }
         }
