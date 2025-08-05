@@ -23,7 +23,7 @@ class DataIngestion:
     
     def download_csv_from_gcp(self):
         try:
-            credentials_path = "/Users/nabarundutta/Downloads/decisive-circle-462313-s7-cc7f2e062172.json"
+            credentials_path = os.getenv("GOOGLE_APPLICATION_CREDENTIALS")
             client = storage.Client.from_service_account_json(credentials_path)
             bucket = client.bucket(self.bucket_name)
             blob = bucket.blob(self.bucket_file_name)
